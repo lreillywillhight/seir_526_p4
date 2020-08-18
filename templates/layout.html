@@ -2,7 +2,9 @@
 
 <html>
   <head>
-    <title>Projects Showcase</title>
+    {% block head %}
+    <title>Projects Showcase - {% block title %} {% endblock %}</title>
+    {% endblock %}
   </head>
 
   <body>
