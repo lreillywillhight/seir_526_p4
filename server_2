@@ -1,0 +1,39 @@
+var express = require('express')
+var { graphqlHTTP } = require('express-graphql')
+var { buildSchema } = require('graphql')
+var app = express()
+
+// construct schema with graphql schema lang
+var testSchema = buildSchema(`
+  type Query {
+    quoteOfTheDay: String
+    random: Float!
+    rollNumDice(numDice: Int!, numSides: Int): [Int]
+  }
+`)
+
+// root provides a resolver function for each API endpoint
+var root = {
+  quoteOfTheDay: () => {
+    return Math.random() < 0.5 ? 'take it easy' : 'salvation lies within'
+  },
+  random: () => {
+    return Math.random()
+  },
+  rollNumDice: ({numDice, numSides}) => {
+    var output = []
+    for (var i = 0; i < numDice; i++) {
+      output.push(1 + Math.floor(Math.random() * (numSides || 6)))
+    }
+    return output
+  }
+}
+
+// set up server.js listen
+app.use('/graphql', graphqlHTTP({
+  schema: testSchema,
+  rootValue: root,
+  graphiql: true,
+}))
+app.listen(3000)
+console.log('KABLOWIE LISTENING ON PORT 3000, test-point at http://localhost:3000/graphql')

@@ -36,3 +36,9 @@ Stretch goals:
 	- dynamic styling, mobile-friendly
 	- encrypted auth
 	- graphics
+
+
+
+Resources from the web:
+	- Youtube 'Web Dev Simplified' well put together - informative and well paced (general graphQL implementation)
+	- Medium.com tech blog site with very good articles (connecting an express server to mongoDB with graphQL)

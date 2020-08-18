@@ -1,27 +1,26 @@
-var express = require('express')
-var { graphqlHTTP } = require('express-graphql')
-var { buildSchema } = require('graphql')
-var app = express()
+require('dotenv').config()
+const express = require('express')
+const { graphqlHTTP } = require('express-graphql')
+const schema = require('./schema/schema')
+const mongoose = require('mongoose')
 
-// construct schema with graphql schema lang
-var testSchema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`)
+const app = express()
 
-// root provides a resolver function for each API endpoint
-var root = {
-  hello: () => {
-    return 'Hello World!'
-  },
-}
 
-// set up server.js listen
+
+
 app.use('/graphql', graphqlHTTP({
-  schema: testSchema,
-  rootValue: root,
-  graphiql: true,
+  schema,
+  graphiql: true
 }))
-app.listen(3000)
-console.log('KABLOWIE LISTENING ON PORT 3000, test-point at http://localhost:3000/graphql')
+
+mongoose.connect(process.env.MONGODB_URI)
+
+mongoose.connection.once('open', () => {
+  console.log('connected to mongodb Atlas')
+})
+
+
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`server.js listening on port ${process.env.PORT}`)
+})

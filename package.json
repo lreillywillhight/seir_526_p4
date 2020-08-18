@@ -4,6 +4,7 @@
   "description": "project showcase",
   "main": "server.js",
   "scripts": {
+    "devStart": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,8 +18,13 @@
   },
   "homepage": "https://github.com/lreillywillhight/seir_526_p4#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-graphql": "^0.11.0",
-    "graphql": "^15.3.0"
+    "graphql": "^15.3.0",
+    "mongoose": "^5.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
