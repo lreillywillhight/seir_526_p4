@@ -1,21 +1,27 @@
-var { graphql, buildSchema } = require('graphql')
+var express = require('express')
+var { graphqlHTTP } = require('express-graphql')
+var { buildSchema } = require('graphql')
+var app = express()
 
-//construct a schema with graphql schema lang
-var helloSchema = buildSchema(`
+// construct schema with graphql schema lang
+var testSchema = buildSchema(`
   type Query {
     hello: String
   }
 `)
 
-//root provides a resolver function for each API endpoint
+// root provides a resolver function for each API endpoint
 var root = {
   hello: () => {
-    return 'Hello world!'
+    return 'Hello World!'
   },
 }
 
-// run graphql query '{ hello }' and print res
-graphql(helloSchema, '{ hello }', root)
-.then((res) => {
-  console.log(JSON.stringify(res))
-})
+// set up server.js listen
+app.use('/graphql', graphqlHTTP({
+  schema: testSchema,
+  rootValue: root,
+  graphiql: true,
+}))
+app.listen(3000)
+console.log('KABLOWIE LISTENING ON PORT 3000, test-point at http://localhost:3000/graphql')
