@@ -22,31 +22,31 @@ def landing():
 #GET register
 #todo - add post route
 @app.route('/auth/register')
-def registerView():
+def registerUser_view():
   return render_template('auth/register.html')
 
 #GET login
 #todo add post route
 @app.route('/auth/login')
-def loginView():
+def loginUser_view():
   return render_template('auth/login.html')
 
 #GET deleteUser
 #todo add post route
 @app.route('/auth/deleteUser')
-def deleteUserView():
-  return render_template('auth/deleteUser.html')
+def deleteUser_view():
+  return render_template('auth/delete.html')
 
 ############## PROJECTS ###############
 
 #GET edit <form>
 #todo add post route with form entry queries
 @app.route('/projects/edit.html')
-def editProjectView():
+def editProject_view():
   return render_template('projects/edit.html')
 
 #GET view
 #todo add post route with search query params
 @app.route('/projects/view.html')
-def viewProject():
+def viewProject_view():
   return render_template('projects/view.html')
