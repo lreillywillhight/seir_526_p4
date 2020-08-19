@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 ### ROUTES
 
-#TEST ROUTE - DELETEME
+#TEST ROUTES - DELETE ME
 
 @app.route('/test')
 def testQuery():
@@ -26,36 +26,45 @@ def create_entry():
 def landing():
   return render_template('landing.html')
 
-######### AUTH ###########
+######### USER ###########
 
-#GET register
-#todo - add post route
-@app.route('/auth/register')
-def registerUser_view():
-  return render_template('auth/register.html')
+#GET and POST register
+@app.route('/user/register', methods=["GET", "POST"])
+def registerUser():
+  return render_template('user/register.html')
 
-#GET login
-#todo add post route
-@app.route('/auth/login')
-def loginUser_view():
-  return render_template('auth/login.html')
+#GET and POST login
+@app.route('/user/login', methods=["GET", "POST"])
+def loginUser():
+  return render_template('user/login.html')
 
-#GET deleteUser
-#todo add post route
-@app.route('/auth/deleteUser')
-def deleteUser_view():
-  return render_template('auth/delete.html')
+#GET and POST deleteUser
+@app.route('/user/deleteUser', methods=["GET", "POST"])
+def deleteUser():
+  return render_template('user/delete.html')
 
 ############## PROJECTS ###############
 
-#GET edit <form>
-#todo add post route with form entry queries
-@app.route('/projects/edit.html')
-def editProject_view():
+#GET and POST edit project
+@app.route('/projects/edit', methods=["GET", "POST"])
+def editProject():
   return render_template('projects/edit.html')
 
-#GET view
-#todo add post route with search query params
-@app.route('/projects/view.html')
-def viewProject_view():
+#GET and POST view project
+@app.route('/projects/view', methods=["GET", "POST"])
+def viewProject():
   return render_template('projects/view.html')
+
+#GET and POST add project
+@app.route('/projects/add', methods=["GET", "POST"])
+def addProject():
+  if request.method == 'GET':
+    print(request)
+    return render_template('projects/add.html')
+  print(request)
+
+
+### Graphiql
+@app.route('/goto/graphql')
+def gotoGraph():
+  return redirect('http://localhost:3000/graphql', code=302)

@@ -4,10 +4,10 @@ const Schema = mongoose.Schema
 const projectSchema = new Schema({
   name: String,
   description: String,
-  technology: Array[String],
+  technology: [String],
   comment: String,
   lead: String,
-  contributor: Array[String]
+  contributor: [String]
 })
 
 module.exports = mongoose.model('Project', projectSchema)

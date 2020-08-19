@@ -30,7 +30,7 @@
 
 var asked = document.getElementById("query").value;
 
-var entry = `{authors {id name age}}`
+var entry = `{users {id name stack}}`
 // console.log(entry)
 fetch(`http://localhost:3000/graphql`, {
   method: "POST",
@@ -39,7 +39,7 @@ fetch(`http://localhost:3000/graphql`, {
   body: entry,
   cache: "no-cache",
   headers: new Headers({
-    // 'Accept': 'application/json',
+    'Accept': 'application/json',
     "content-type": "application/graphql"
   })
 })

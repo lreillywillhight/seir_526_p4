@@ -1,0 +1,44 @@
+{% extends "layout.html" %} {% block title %}Add Project to Database{% endblock
+%}
+
+<body>
+  {% block content %}
+  <div class="body-container">
+    <div class="form-container">
+      <form id="add-project" action="" method="POST">
+        <div class="form-input">
+          <label for="name">Project Title:</label>
+          <input type="text" name="name" id="name"/>
+        </div>
+        <div class="form-input">
+          <label for="description">Description:</label>
+          <input type="text" name="description" id="description"/>
+        </div>
+        <div class="form-input">
+          <label for="technology">Technologies used:</label>
+          <input type="text" name="technology" id="technology"/>
+        </div>
+        <div class="form-input">
+          <label for="comment">Comments:</label>
+          <input type="text" name="comments" id="comments"/>
+        </div>
+        <div class="form-input">
+          <label for="lead">Project Lead:</label>
+          <input type="text" name="lead" id="lead"/>
+        </div>
+        <div class="form-input">
+          <label for="contributor">Project Contributors:</label>
+          <input type="text" name="contributor" id="contributor"/>
+        </div>
+        <div class="form-button">
+          <button class="btn btn-primary" id="submit" onclick="submit_entry()">Add project to database</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  {% endblock %}
+</body>
+
+{% block script %}
+
+{% endblock %}

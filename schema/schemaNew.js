@@ -1,6 +1,6 @@
 const graphql = require('graphql')
-const User = require(../models/user)
-const Project = require(../models/project)
+const User = require('../models/user')
+const Project = require('../models/project')
 
 const { 
   GraphQLObjectType, 
@@ -36,7 +36,7 @@ const UserType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     email: { type: GraphQLString },
-    stack: { type: new GraphQLList(GraphQLString)},
+    stack: { type: GraphQLList(GraphQLString)},
     project: {
       type: new GraphQLList(ProjectType),
       resolve(parent, args) {
@@ -70,7 +70,7 @@ const RootQuery = new GraphQLObjectType({
       }
     },
     projects: {
-      type: new GraphQLList(BookType),
+      type: new GraphQLList(ProjectType),
       resolve(parent, args) {
         return Project.find({})
       }
