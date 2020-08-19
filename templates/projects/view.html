@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}View Projects{% endblock %}
+
+
+<body>
+  
+  {% block content %}
+  <div class="body-container">
+    <div class="select-container">
+      <select id="project-select">
+        <option selected hidden>Select a project to view</option>
+      </select>
+    </div>
+  </div>
+  {% endblock %}
+</body>
+
+{% block script %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', (e) => {
+    console.log('DOM content loaded - show the projects!')
+    show_projects()
+  })
+
+  let projectSelect = document.getElementById('project-select')
+
+  function show_projects() {
+    fetch('http://localhost:3000/graphql', {
+      method: 'POST',
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        query: `
+        query {
+          projects {
+            id
+            name
+            description
+            }
+          }
+        `
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      data.data.projects.forEach(project => {
+        const option = document.createElement('option')
+        option.value = project.id
+        option.innerText = project.name
+        console.log(project)
+        projectSelect.append(option)
+      })
+    })
+  }
+</script>
+
+{% endblock %}  
