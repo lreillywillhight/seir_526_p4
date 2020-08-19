@@ -7,19 +7,27 @@
   </head>
 
   <body>
-    <nav class="nav-header">
-      <a href="http://localhost:3000/graphql">Try GraphiQL</a>
-      <a href="">Home</a>
-      <a href="">Projects</a>
-      <a href="">Users</a>
-      <a href="">Profile</a>
-    </nav>
+    <div class="nav-header">
+      <div class="nav-header-left">
+        <a href="">Home</a>
+        <a href="">Projects</a>
+        <a href="">Users</a>
+        <a href="">Profile</a>
+      </div>
+      <div class="nav-header-center">
+        <a href="http://localhost:3000/graphql"><span class="graphql-link">Try GraphiQL</span></a>
+      </div>
+      <div class="nav-header-right">
+
+      </div>
+    </div>
+
     {% block content %}
     {% endblock %}
   </body>
 
   <footer>
-    <p style="font-size:12px;"><span>&#169;</span>2020 - Louis Reilly-Willhight for General Assembly</p>
+    <p><span>&#169;</span>2020 - Louis Reilly-Willhight for General Assembly</p>
   </footer>
 
   {% block script %}

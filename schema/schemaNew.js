@@ -116,7 +116,7 @@ const Mutation = new GraphQLObjectType({
           lead: args.lead,
           contributor: args.contributor
         })
-        return project.save
+        return project.save()
       }
     }
   }

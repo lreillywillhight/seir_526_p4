@@ -5,7 +5,7 @@
   {% block content %}
   <div class="body-container">
     <div class="form-container">
-      <form id="add-project" action="" method="POST">
+      <form id="add-project" method="POST">
         <div class="form-input">
           <label for="name">Project Title:</label>
           <input type="text" name="name" id="name"/>
@@ -31,7 +31,7 @@
           <input type="text" name="contributor" id="contributor"/>
         </div>
         <div class="form-button">
-          <button class="btn btn-primary" id="submit" onclick="submit_entry()">Add project to database</button>
+          <button class="btn btn-primary" id="submit" onclick="submit_project()">Add project to database</button>
         </div>
       </form>
     </div>
@@ -40,5 +40,17 @@
 </body>
 
 {% block script %}
+
+<script>
+
+  function submit_project() {
+    event.preventDefault()
+    var formObjects = document.querySelectorAll('input')
+    var objectArray = Array.from(formObjects)
+    let keyArray = []
+    let valueArray = []
+  }
+
+</script>
 
 {% endblock %}
