@@ -105,7 +105,7 @@ const Mutation = new GraphQLObjectType({
           pages: args.age,
           authorID: args.authorID
         })
-        return books.save()
+        return book.save()
       }
     }
   }
