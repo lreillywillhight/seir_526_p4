@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+<html>
+  {% block title%}testQuery{% endblock %}
+
+  {% block content %}
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1>TEST QUERY</h1>
+          <hr>
+          <div class="mb-3">
+            <label>Query</label>
+            <input type="text" id="query"  placeholder="Query" value="authors"></input>
+            <button class="btn btn-primary" id="submit" onclick="submit_query()">submit query</button>
+          </div>
+          <h3>Query data</h3>
+          <hr>
+          <div class="mb-3" id="queries"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  {% endblock %}
+
+  {% block script %}
+  <script>
+    function submit_query() {
+
+var asked = document.getElementById("query").value;
+
+var entry = `{authors {id name age}}`
+// console.log(entry)
+fetch(`http://localhost:3000/graphql`, {
+  method: "POST",
+  // credentials: "include",
+  // mode: "no-cors",
+  body: entry,
+  cache: "no-cache",
+  headers: new Headers({
+    // 'Accept': 'application/json',
+    "content-type": "application/graphql"
+  })
+})
+  .then(function (response) {
+    if (response.status !== 200) {
+      console.log(`Looks like there was a problem. Status code: ${response.status}`);
+      return;
+    }
+    response.json().then(function (data) {
+      console.log(data);
+    });
+  })
+  .catch(function (error) {
+    console.log("Fetch error: " + error);
+  });
+
+}
+  </script>
+
+  {% endblock %}
+</html>

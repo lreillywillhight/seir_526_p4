@@ -1,15 +1,24 @@
-from flask import Flask, redirect, render_template, jsonify, request
-app = Flask(__name__)
+from flask import Flask, redirect, render_template, jsonify, request, make_response
+# from flask_cors import CORS
 import random
 
+app = Flask(__name__)
+# CORS(app)
 
 ### ROUTES
 
 #TEST ROUTE - DELETEME
 
 @app.route('/test')
-def hello_world():
-    return 'HEY THAR'
+def testQuery():
+  return render_template("testQuery.html")
+
+@app.route('/test/post', methods=["POST"])
+def create_entry():
+  req = request.get_json()
+  print(req)
+  res = make_response(jsonify(req), 200)
+  return res
 
 
 #GET home
